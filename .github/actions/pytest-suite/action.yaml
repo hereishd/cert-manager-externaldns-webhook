@@ -1,0 +1,15 @@
+name: Python Test Suite
+description: A GitHub Action to run Python tests using pytest.
+inputs:
+  test-file:
+    description: 'The path to the test to use.'
+    required: true
+    default: 'app/test_webhook.py'
+
+runs:
+  using: 'composite'
+  steps:
+    - name: Execute Test Suite
+      shell: bash
+      run: |
+        pytest -v ${{ inputs.test-file }}
