@@ -1,0 +1,6 @@
+fastapi
+uvicorn[standard]
+kubernetes
+pytest
+pytest-mock
+httpx2

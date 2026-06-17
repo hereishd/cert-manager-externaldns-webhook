@@ -1,0 +1,26 @@
+name: Scan App Dependencies
+
+on:
+  push:
+    branches: 
+      - main
+  pull_request:
+    types: [opened, synchronize, reopened]
+
+jobs:
+  scan-dependencies:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout code
+        uses: actions/checkout@v4
+
+      - name: Set up Python
+        uses: actions/setup-python@v5
+        with:
+          python-version: ${{ vars.PYTHON_VERSION }}
+          cache: 'pip'
+
+      - name: Run Dependency Audit Check
+        uses: ./.github/actions/pyaudit-dependencies
+        with:
+          requirements-file: requirements.txt
